@@ -1,11 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Matriz</title>
 </head>
+<style>
+    .container {
+        background-color: blue;
+        width: 300px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        text-align: center;
+        justify-content: center;
+    }
+
+    .item {
+        background-color: red;
+        width: 50px;
+        margin: 5px;
+    }
+</style>
+
 <body>
-    
+    <div class="container" id="div_matriz">
+
+    </div>
+
+    <button onclick="montarMatriz()">Montar matriz</button>
+    <br>
+    <input type="text" id="ipt_linha">
+    <input type="text" id="ipt_coluna">
+    <button onclick="consultarMatriz()">Consultarmatriz</button>
+    <div id="div_resposta"></div>
+    <br>
+    <button onclick="somarLinha()">Somar valores por linha</button>
+    <button onclick="somarColuna()">Somar valores por coluna</button>
 </body>
+<script>
+    let minhaMatriz = []
+
+    function somarLinha(){
+        //função incompleta
+        let soma = 0
+        let qtdLinhas = 3
+        let qtdColunas = 3
+
+        for (let linha = 0; linha < qtdLinhas; linha++) {
+            for (let coluna = 0; coluna < qtdColunas; coluna++) {
+                soma += minhaMatriz[linha][coluna]
+
+            }
+        }
+
+        div_resposta.innerHTML = soma
+    }
+
+    function consultarMatriz(){
+        let linha = Number(ipt_linha.value) - 1
+        let coluna = Number(ipt_coluna.value) - 1
+
+        let valor = minhaMatriz[linha][coluna]
+
+        div_resposta.innerHTML = `O valor da linha ${linha} e da coluna ${coluna} é: ${valor}`
+    }
+
+    function montarMatriz() {
+        let qtdLinhas = 3
+        let qtdColunas = 3
+
+        let valorInicial = 5
+
+        let frase = ''
+
+        for (let linha = 0; linha < qtdLinhas; linha++) {
+            minhaMatriz[linha] = []
+            for (let coluna = 0; coluna < qtdColunas; coluna++) {
+                minhaMatriz[linha][coluna] = valorInicial
+                frase += `<div class="item">${valorInicial}</div>`
+                valorInicial += 5
+
+            }
+        }
+
+        div_matriz.innerHTML = frase
+
+        console.log(valorInicial);
+        console.log(minhaMatriz);
+        
+        
+    }
+</script>
+
 </html>
